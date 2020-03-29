@@ -2,17 +2,14 @@ import h5py
 import os
 from PIL import Image
 import numpy as np
-# from matplotlib.pyplot import imshow
 import matplotlib.image as mpimg
 import pandas as pd
-
 import matplotlib.pyplot as plt
 from sklearn.metrics import davies_bouldin_score
 from sklearn.metrics import pairwise_distances
 from sklearn import metrics
 from matplotlib import pyplot as plt
 from sklearn.cluster import KMeans
-
 
 # from keras.preprocessing.image import array_to_img
 file_path = os.path.dirname(os.path.abspath(__file__))
@@ -28,10 +25,6 @@ with h5py.File(filename, 'r') as f:
     # Get the data
     images = list(f[a_group_key])
     labels = list(f[b_group_key])
-
-
-
-
 
 data = pd.DataFrame(labels)
 # from sklearn.preprocessing import normalize
@@ -62,7 +55,6 @@ for k in K:
     db_score.append(davies_bouldin_score(df, labels))
     calinski.append(metrics.calinski_harabasz_score(df, labels))
 
-
 # plt.plot(K,silhouette,K,db_score)
 # plt.plot(calinski)
 # plt.xlabel('k')
@@ -81,7 +73,6 @@ for k in K:
 #     img.save(directory + str(i) + '.png')
 
 fig = plt.figure()
-
 fig.suptitle('Cluster Validation Quality Measures for K-Means Clustering', fontweight="bold")
 plt.subplots_adjust(hspace=0.5, wspace= 0.4)
 
